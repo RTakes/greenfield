@@ -4,7 +4,7 @@
   </div>
   <div>
     <form name="signupForm" ng-submit="signup()" novalidate>
-      <fieldset class="nameContainer form-section">
+      <fieldset class="nameContainer form-section active">
         <!-- firstname input form -->
         <label for="firstName">Name</label>
         <input type="text" name="firstName" ng-model="user.first" ng-minlength="2" ng-maxlength="15" required>
@@ -42,15 +42,24 @@
         <!-- user preferences input form -->
         <h3>Select your charity preferences </h3>
         <label for="preference">Categories</label>
-        <input type="checkbox" name="preference" ng-model="user.animals">Animals<br>
-        <input type="checkbox" name="preference" ng-model="user.arts">Arts, Culture, Humanities<br>
-        <input type="checkbox" name="preference" ng-model="user.education">Education<br>
-        <input type="checkbox" name="preference" ng-model="user.environment">Environment<br>
-        <input type="checkbox" name="preference" ng-model="user.health">Health<br>
-        <input type="checkbox" name="preference" ng-model="user.humanService">Human Services<br>
-        <input type="checkbox" name="preference" ng-model="user.international">International<br>
-        <input type="checkbox" name="preference" ng-model="user.publicBenefit">Public Benefit<br>
-        <input type="checkbox" name="preference" ng-model="user.religion">Religion<br>
+        <input id="pref-animals" type="checkbox" name="preference" ng-model="user.animals">
+        <label for="pref-animals"><span></span>Animals</label>
+        <input id="pref-arts" type="checkbox" name="preference" ng-model="user.arts">
+        <label for="pref-arts"><span></span>Arts, Culture, Humanities</label>
+        <input id="pref-education" type="checkbox" name="preference" ng-model="user.education">
+        <label for="pref-education"><span></span>Education</label>
+        <input id="pref-enviornment" type="checkbox" name="preference" ng-model="user.environment">
+        <label for="pref-enviornment"><span></span>Environment</label>
+        <input id="pref-health" type="checkbox" name="preference" ng-model="user.health">
+        <label for="pref-health"><span></span>Health</label>
+        <input id="pref-humanService" type="checkbox" name="preference" ng-model="user.humanService">
+        <label for="pref-humanService"><span></span>Human Services</label>
+        <input id="pref-international" type="checkbox" name="preference" ng-model="user.international">
+        <label for="pref-international"><span></span>International</label>
+        <input id="pref-publicBenefit" type="checkbox" name="preference" ng-model="user.publicBenefit">
+        <label for="pref-publicBenefit"><span></span>Public Benefit</label>
+        <input id="pref-religion" type="checkbox" name="preference" ng-model="user.religion">
+        <label for="pref-religion"><span></span>Religion</label>
       </fieldset>
       <fieldset class="form-section">
 
@@ -63,8 +72,9 @@
         <label for="telephone">Telephone number</label>
         <input type="tel" name="telephone" ng-pattern="/^\(?\d{3}\)?\s?\d{3}\-?\d{4}$/" ng-model="user.phone" required>
         <!-- phone number validation -->
-        <span class="form-tip form-error" ng-show="signupForm.telephone.$error.pattern">Enter a valid telephone number</span>
         <button type="button"ng-click="sendCode()" ng-disabled='signupForm.telephone.$invalid'>Send Code</button>
+        <span class="form-tip form-error" ng-show="signupForm.telephone.$error.pattern">Enter a valid telephone number</span>
+        
       </fieldset>
       <fieldset class="verifyContainer form-section">
         <!-- verification code input -->
@@ -72,7 +82,7 @@
         <label for="verify">Verificaiton Code</label>
         <input id="verify" type="text" name="verify" ng-model="user.code" required>
         <!-- verification code validation -->
-        <span class="form-tip form-error" ng-show="signupForm.verify.$invalid || signupForm.verify.$pristine">Enter verification code received via SMS</span>
+        <span class="form-tip" ng-show="signupForm.verify.$invalid || signupForm.verify.$pristine">Enter verification code received via SMS</span>
         <button type="button"ng-click="verifyCode()" ng-disabled="signupForm.verify.$invalid">Verify Code</button>
       </fieldset>
       <fieldset class="form-section">
@@ -97,12 +107,17 @@
         <span class="form-tip">You have donated <span id="currency-default">{{user.pledge | currency }}</span>! </p>
         <span class="form-tip form-error" ng-show="signupForm.pledge.$invalid || signupForm.pledge.$pristine">Please enter amount</span>
       </fieldset>
-      <div id="createAccount">
+      <fieldset id="createAccount">
 
         <!-- create account submit button-->
         <p>Click <strong>Create account</strong> to sign up today!</p>
         <button type="submit" ng-disabled='signupForm.$invalid' class="btn btn-primary">Create account</button>
-    </div>
+    </fieldset>
+
+      <div class="form-controls">
+        <button type="button" class="form-prev">Back</button>
+        <button type="button" ng-click="formNext()" class="form-next">Next</button>
+      </div>
     </form>
   </div>
 </div>
