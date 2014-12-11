@@ -256,7 +256,20 @@ header.main-header{
      }
 
 
+  #signup-page ul.form-progress{
+    float: right;
+  }
 
+    #signup-page ul.form-progress li{
+      width: 8px;
+      height: 8px;
+      display: block;
+      float: left;
+      margin-right: 8px;
+      background: #3498DB;
+      border: 2px solid #2C3E50;
+      border-radius: 6px;
+    }
 
 
 

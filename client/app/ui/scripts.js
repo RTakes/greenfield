@@ -23,16 +23,5 @@ $('document').ready(function(){
   });
 
 
-  //Form interaction
-  
-  $('.form-next').on(touchClick, function(e){
-    console.log('fired');
-    e.preventDefault();
-    var parentForm = $(this).parent('form');
-
-    $(parentForm + '> fieldset.active').fadeOut().removeClass('active').next('fieldset').fadeIn().addClass('active');
-
-  }); 
-
 
 });

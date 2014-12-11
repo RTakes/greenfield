@@ -23,11 +23,30 @@ angular.module('pledgr.signup', [])
     pledge: 100.00
   };
 
+
+  $scope.form = {
+    selected : null,
+    fieldsets : null,
+    nextDisabled : false,
+    prevDisabled : true
+  }
+  
+  $scope.form.selected = angular.element(document.querySelector('#signup-form'));
+  $scope.form.fieldsets = $($scope.form.selected).find('fieldset');
+
   $scope.formNext = function() {
+    var form =  angular.element(document.querySelector('#signup-form fieldset.active'));
+      angular.element(form).fadeOut('fast', function(){
+          console.log($(this).next('fieldset').length);
+          $(this).next('fieldset').fadeIn().addClass('active');
+      }).removeClass('active');
+  };
 
-    console.log('Next');
-    $('#signup-form form fieldset.active').fadeOut();
-
+  $scope.formPrev = function() {
+    var form =  angular.element(document.querySelector('#signup-form fieldset.active'));
+      angular.element(form).fadeOut('fast', function(){
+          $(this).prev('fieldset').fadeIn().addClass('active');
+      }).removeClass('active');
   };
 
 
@@ -70,11 +89,5 @@ angular.module('pledgr.signup', [])
       }
     });
   };
-}).directive("formNext", function () {
-  return function (scope, element, attrs) {
-    scope.$watch(attrs.formNext, function (newVal) {
-        console.log(newVal);
-    })
-  }
 });
 

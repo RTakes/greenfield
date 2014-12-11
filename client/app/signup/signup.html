@@ -3,7 +3,8 @@
     <h2>Create an account</h2>
   </div>
   <div>
-    <form name="signupForm" ng-submit="signup()" novalidate>
+    <form id="signup-form" name="signupForm" ng-submit="signup()" novalidate >
+
       <fieldset class="nameContainer form-section active">
         <!-- firstname input form -->
         <label for="firstName">Name</label>
@@ -17,6 +18,7 @@
         <span class="form-tip form-error" ng-show="signupForm.lastName.$error.minlength">Name too short</span>
         <span class="form-tip form-error" ng-show="signupForm.lastName.$error.maxlength">Name too long</span>
       </fieldset>
+
       <fieldset class="usrnameContainer form-section">
         <!-- username input form -->
         <label for="userName">User name</label>
@@ -24,6 +26,7 @@
         <!-- username validation -->
         <span class="form-tip form-error" ng-show="signupForm.userName.$invalid && !signupForm.userName.$pristine">Enter a valid email</span>
       </fieldset>
+
       <fieldset class="pwdContainer form-section">
         <!-- password input form -->
         <label for="password">Create password</label>
@@ -32,12 +35,14 @@
         <!-- password validation -->
         <span class="form-tip form-error" ng-show="signupForm.password.$error.minlength">Password too short</span>
       </fieldset>
+
       <fieldset class="gender form-section">
         <!-- gender input form -->
         <label for="gender">Gender</label>
         <input type="checkbox" name="gender" ng-model="user.male">Male<br>
         <input type="checkbox" name="gender" ng-model="user.female">Female<br>
       </fieldset>
+
       <fieldset class="preference form-section">
         <!-- user preferences input form -->
         <h3>Select your charity preferences </h3>
@@ -61,10 +66,7 @@
         <input id="pref-religion" type="checkbox" name="preference" ng-model="user.religion">
         <label for="pref-religion"><span></span>Religion</label>
       </fieldset>
-      <fieldset class="form-section">
 
-        <!-- local area preference -->
-      </fieldset>
       <fieldset class="phoneContainer form-section">
         <!-- phone number input form -->
         <h3>Verify your phone number</h3>
@@ -74,8 +76,9 @@
         <!-- phone number validation -->
         <button type="button"ng-click="sendCode()" ng-disabled='signupForm.telephone.$invalid'>Send Code</button>
         <span class="form-tip form-error" ng-show="signupForm.telephone.$error.pattern">Enter a valid telephone number</span>
-        
       </fieldset>
+
+
       <fieldset class="verifyContainer form-section">
         <!-- verification code input -->
         <span class="form-tip">Please enter the verification code</span>
@@ -85,6 +88,7 @@
         <span class="form-tip" ng-show="signupForm.verify.$invalid || signupForm.verify.$pristine">Enter verification code received via SMS</span>
         <button type="button"ng-click="verifyCode()" ng-disabled="signupForm.verify.$invalid">Verify Code</button>
       </fieldset>
+
       <fieldset class="form-section">
         <!-- user donation amount form -->
         <h3>Annual Pledge Amount</h3>
@@ -107,16 +111,20 @@
         <span class="form-tip">You have donated <span id="currency-default">{{user.pledge | currency }}</span>! </p>
         <span class="form-tip form-error" ng-show="signupForm.pledge.$invalid || signupForm.pledge.$pristine">Please enter amount</span>
       </fieldset>
-      <fieldset id="createAccount">
 
+      <fieldset id="createAccount">
         <!-- create account submit button-->
         <p>Click <strong>Create account</strong> to sign up today!</p>
         <button type="submit" ng-disabled='signupForm.$invalid' class="btn btn-primary">Create account</button>
     </fieldset>
 
       <div class="form-controls">
-        <button type="button" class="form-prev">Back</button>
-        <button type="button" ng-click="formNext()" class="form-next">Next</button>
+        <button type="button" ng-click="formPrev()" ng-disabled="{{form.prevDisabled}}" class="form-prev">Back</button>
+        <button type="button" ng-click="formNext()" ng-disabled="{{form.nextDisabled}}" class="form-next">Next</button>
+
+        <ul class="form-progress">
+          <li ng-repeat="f in form.fieldsets"></li>
+        </ul>
       </div>
     </form>
   </div>
