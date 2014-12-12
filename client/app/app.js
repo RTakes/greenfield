@@ -61,9 +61,13 @@ angular.module('pledgr', [
     });
 
     // $httpProvider.interceptors.push('AttachTokens');
-}).controller('mainApp', function($scope, $state){
+}).controller('mainApp', function($scope, $state, $window){
 
   $scope.state = $state;
-
+  
+  $scope.logout = function(){
+    delete $window.localStorage['token'];
+    $state.go('signin');
+  }
 
 });
