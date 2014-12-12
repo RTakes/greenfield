@@ -1,5 +1,103 @@
 angular.module('pledgr.factories', [])
 
+.factory('CreditCards', function($http, $state,$window, Auth, Account) {
+  Stripe.setPublishableKey("pk_test_d4qfvAGCTfij33GxuvYkZKUl");
+  var token = $window.localStorage.getItem('token');
+  
+  var cards = {data:[]};
+  var formData = {
+    number: "",
+    cvc: "",
+    expmonth: "",
+    expyear: ""
+  };
+  
+  var getCards = function() {
+    Auth.checkToken(token).then(function(status) { 
+      if(status === 200) {
+        $http.get('/card/get')
+        .success(function (res) {
+          for(var i = 0; i < res.data.length; i++) {
+            cards.data.push(res.data[i]);
+          }
+        })
+        .error(function(error,status){
+          console.log(error,status);
+        });
+      }
+      else {
+        $state.go('home');
+      }
+    })
+  };
+
+  var addCard = function() {
+     var $form = $('#payment-form');
+     Stripe.card.createToken($form, 
+        function (status, response) {
+          if (response.error) {
+
+          } else {
+            // response contains id and card, which contains additional card details
+            var token = response.id;
+            Account.getUserData(token).then(function(data) {
+              $http({
+                url: '/card/add',
+                method: "POST",
+                data: {
+                  user: data.username, 
+                  stripeToken: token,
+                  endingDigits: formData.number.slice(-4),
+                  exp: (formData.expmonth 
+                      + '/' + formData.expyear)
+                },
+                headers: {'Content-Type': 'application/json'}
+              })
+              .then(function (res) {
+                  if(res.data === "SUCCESS") {
+                    cards.data.push({endingDigits: formData.number.slice(-4), exp: formData.expmonth 
+                      + '/' + formData.expyear});
+                  }
+              });
+            });
+
+            $form.get(0).reset();
+          }
+        }
+     ); 
+  };
+
+  var deleteCard = function(card) {
+    Account.getUserData(token).then(function(data) {
+      $http({
+        url: '/card/delete',
+        method: "POST",
+        data: {user: data.username, endingDigits: card.endingDigits},
+        headers: {'Content-Type': 'application/json'}
+      })
+      .then(function (res) {
+        console.log(res);
+        if(res.data === "SUCCESS") {
+          for(var i = 0; i < cards.data.length; i++) {
+            if(cards.data[i].endingDigits === card.endingDigits) {
+              cards.data.splice(i, 1);
+            }
+          }
+        }
+      });
+    });      
+  }
+
+  return {
+    getCards: getCards,
+    addCard: addCard,
+    deleteCard: deleteCard,
+    formData: formData,
+    cards: cards
+  }
+})
+
+
 .factory('Account', function($http) {
   var getUserData = function(token) {
     return $http({
