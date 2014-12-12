@@ -4,7 +4,6 @@ var stripe = require('stripe')("sk_test_WjBhk0wLLvaJp3bO65bozL53");
 
 module.exports = {
   getCards: function(req, res) {
-console.log(req.query.user);
     Card.find({user: req.query.user},function(err, cards) {
       if(!err) {
         // console.log(cards);
