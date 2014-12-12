@@ -29,8 +29,8 @@
 	</form> <br/> <br/>
 
 	<h2> Your Cards </h2>
-	<span ng-show="cards.length === 0"> <br/> You currently have no cards. </span>
-	<ul ng-repeat="acard in cards track by $index"> 
+	<span ng-show="cards.data.length === 0"> <br/> You currently have no cards. </span>
+	<ul ng-repeat="acard in cards.data track by $index"> 
 		<li class='card'> 
 			Card ending in {{acard.endingDigits}} ------------ {{acard.exp}} 
 			<button class="exitCard" ng-click="deleteCard(acard)">Delete Card</button>
