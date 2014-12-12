@@ -330,3 +330,20 @@ header.main-header{
   .validatePhone {
     padding-top: 10px;
   }
+
+  .cCards {
+    text-align: center;
+    margin-top: 5.25em;
+  }
+
+  .card {
+    border: 1px solid #c4c6c6;
+    margin: 0 0 20px 0;
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  .exitCard {
+    float:right;
+    margin-top: -.7em;
+  }

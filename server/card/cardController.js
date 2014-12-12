@@ -3,6 +3,25 @@ var Card = require('./cardModel');
 var stripe = require('stripe')("sk_test_WjBhk0wLLvaJp3bO65bozL53");
 
 module.exports = {
+  getCards: function(req, res) {
+    Card.find({},function(err, cards) {
+      if(!err) {
+        // console.log(cards);
+        res.send({data:cards});
+      }
+    });
+  },
+  delete: function(req, res) {
+    console.log(req);
+    Card.find({username: req.user, endingDigits: req.endingDigits}).remove(function(err) {
+      if (err) {
+        res.send('ERROR');
+      }
+      else {
+        res.send('SUCCESS');
+      }
+    });
+  },
   add: function(req, res) {
     var stripeToken = req.body.stripeToken;
 
@@ -28,7 +47,8 @@ module.exports = {
 			  	        customer: customer.id
 			  	      }, 
 			  	      function(err, charge) {
-	        	    	var card = new Card({user: req.body.user, customer_id: customer.id});
+	        	    	var card = new Card({user: req.body.user, customer_id: customer.id, 
+                    endingDigits: req.body.endingDigits, exp: req.body.exp});
 	            		card.save(function(error) {
 	              		if (!error) {
 	              			res.send('SUCCESS');
