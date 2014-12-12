@@ -63,17 +63,14 @@ module.exports = {
 
   badge: function(req, res){
 
+    var urlParts = req.url.split('/');
+    var orgid = parseInt(urlParts[2], 10);
+    console.log(orgid);
 
-  function addBadge(){
-    var frame = document.createElement("iframe"); 
-    frame.src = "http://localhost:8000"; 
-    document.getElementById("test").appendChild(frame);
-  }      
-
-  var send = JSON.stringify(addBadge);
+    var aTag = '<a target="_blank" href="http://localhost:8000/api/charity/'+orgid+'"><img src="http://localhost:8000/img/pledgr-badge.png" /></a>';
 
 
-    res.send('function test(){alert("test");}');
+    res.send(aTag);
   }
 
 };
