@@ -306,6 +306,19 @@ header.main-header{
 }
 
 
+/*Grouping items in registration page*/
+.input-group {
+  clear:both;
+}
+
+.input-item {
+  margin:0 10px 0 0;
+  display:inline;
+  float:left;
+}
+
+
+
 
 
 

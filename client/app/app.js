@@ -54,6 +54,10 @@ angular.module('pledgr', [
        url: '/account',
        templateUrl: 'app/account/account.html',
        controller: 'AccountController'
+    })
+    .state('confirmation', {
+      url: '/confirmation',
+      templateUrl: 'app/confirmation/confirmation.html',
     });
 
     // $httpProvider.interceptors.push('AttachTokens');

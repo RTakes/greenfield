@@ -1,6 +1,7 @@
 angular.module('pledgr.register', [])
 
-.controller('RegisterController', function($scope, $window, Categories, Charities) {
+.controller('RegisterController', function($scope, $window, $state, Categories, Charities) {
+  console.log('instantiating controller');
   Categories.getCategories()
     .then(function(categories) {
       $scope.categories = categories;
@@ -10,6 +11,25 @@ angular.module('pledgr.register', [])
     .then(function(subCategories) {
       $scope.subCategories = subCategories;
     });
+
+  $scope.charity = {
+    name: '',
+    city: '',
+    state: '',
+    zip: 12345,
+    email: 'contact@charity.org',
+    phone: '(123)456-7890',
+    category: '',
+    subCategory: '',
+    vetted: false
+  };
+
+  $scope.register = function() {
+    Charities.register($scope.charity)
+      .then(function(res) {
+        $state.go('confirmation');
+      });
+  };
 
   $scope.stateAbbrevs = [
     'AL',
@@ -64,32 +84,4 @@ angular.module('pledgr.register', [])
     'WY'
   ];
 
-  $scope.charity = {
-    name: '',
-    city: '',
-    state: '',
-    zip: 12345,
-    email: 'contact@charity.org',
-    phone: '(123)456-7890',
-    category: '',
-    subCategory: '',
-    vetted: false
-  };
-
-  $scope.register = function() {
-    // console.log($scope.charity);
-    Charities.register($scope.charity)
-      .then(function(res) {
-        console.log(res);
-      });
-
-    // Auth.signup($scope.user)
-    // .then(function(token) {
-    //     $window.localStorage.setItem('token', token);
-    //     // $location.path('/userhome');
-    //   })
-      // .catch(function(error) {
-        // console.error(error);
-      // });
-  };
 });

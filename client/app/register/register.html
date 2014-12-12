@@ -2,6 +2,7 @@
   <div>
     <h2>Register your charity</h2>
   </div>
+
   <div>
     <form name="registerForm" ng-submit="register()" novalidate>
       <fieldset class="nameContainer form-section">
@@ -14,32 +15,50 @@
       </fieldset>
       <fieldset class="phoneContainer form-section">
         <!-- phone number input form -->
-        <h3>Contact Information</h3>
-        <label for="telephone">Telephone number</label>
-        <input type="tel" name="telephone" ng-pattern="/^\(?\d{3}\)?\s?\d{3}\-?\d{4}$/" ng-model="charity.phone" required>
-        <!-- phone number validation -->
-        <span class="form-tip form-error" ng-show="registerForm.telephone.$error.pattern">Enter a valid telephone number</span>
+        <div class="input-group">
 
-        <label for="city">City</label>
-        <input type="text" name="city" ng-model="charity.city" ng-minlength="1" ng-maxlength="40" required>
-        <!-- city validation -->
-        <span class="form-tip form-error" ng-show="registerForm.city.$error.minlength">City name too short</span>
-        <span class="form-tip form-error" ng-show="registerForm.city.$error.maxlength">City name too long</span>
+          <div class="input-item">
+            <label for="telephone">Telephone number</label>
+            <input type="tel" name="telephone" ng-pattern="/^\(?\d{3}\)?\s?\d{3}\-?\d{4}$/" ng-model="charity.phone" required>
+            <!-- phone number validation -->
+            <span class="form-tip form-error" ng-show="registerForm.telephone.$error.pattern">Enter a valid telephone number</span>
+          </div>
 
-        <label for="state">State</label>
-        <select name="state" ng-model="charity.state">
-          <option ng-repeat="state in stateAbbrevs">{{ state }}</option>
-        </select>
+          <div class="input-item">
+            <label for="email">Email address</label>
+            <input type="email" name="email" ng-pattern="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-model="charity.email" required>
+            <!-- phone number validation -->
+            <span class="form-tip form-error" ng-show="registerForm.email.$error.pattern">Enter a valid email address</span>        
+          </div>
 
-        <label for="zip">ZIP code</label>
-        <input type="tel" name="zip" ng-pattern="/^\d{5}(?:[-\s]\d{4})?$/" ng-model="charity.zip" required>
-        <!-- phone number validation -->
-        <span class="form-tip form-error" ng-show="registerForm.zip.$error.pattern">Enter a valid ZIP code</span>
+        </div>
 
-        <label for="email">Email address</label>
-        <input type="email" name="email" ng-pattern="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" ng-model="charity.email" required>
-        <!-- phone number validation -->
-        <span class="form-tip form-error" ng-show="registerForm.email.$error.pattern">Enter a valid email address</span>        
+        <div class="input-group">
+
+          <div class="input-item">
+            <label for="city">City</label>
+            <input type="text" name="city" ng-model="charity.city" ng-minlength="1" ng-maxlength="40" required>
+            <!-- city validation -->
+            <span class="form-tip form-error" ng-show="registerForm.city.$error.minlength">City name too short</span>
+            <span class="form-tip form-error" ng-show="registerForm.city.$error.maxlength">City name too long</span>
+          </div>
+
+          <div class="input-item">
+            <label for="state">State</label>
+            <select name="state" ng-model="charity.state">
+              <option ng-repeat="state in stateAbbrevs">{{ state }}</option>
+            </select>
+          </div>
+
+          <div class="input-item">
+            <label for="zip">ZIP code</label>
+            <input type="tel" name="zip" ng-pattern="/^\d{5}(?:[-\s]\d{4})?$/" ng-model="charity.zip" required>
+            <!-- phone number validation -->
+            <span class="form-tip form-error" ng-show="registerForm.zip.$error.pattern">Enter a valid ZIP code</span>
+          </div>
+
+        </div>
+
 
       </fieldset>
       <fieldset class="preference form-section">
