@@ -86,7 +86,6 @@ angular.module('pledgr.factories', [])
         headers: {'Content-Type': 'application/json'}
       })
       .then(function (res) {
-        console.log(res);
         if(res.data === "SUCCESS") {
           for(var i = 0; i < cards.data.length; i++) {
             if(cards.data[i].endingDigits === card.endingDigits) {
