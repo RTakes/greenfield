@@ -13,22 +13,27 @@ angular.module('pledgr.factories', [])
   };
   
   var getCards = function() {
-    Auth.checkToken(token).then(function(status) { 
-      if(status === 200) {
-        $http.get('/card/get')
-        .success(function (res) {
-          for(var i = 0; i < res.data.length; i++) {
-            cards.data.push(res.data[i]);
-          }
-        })
-        .error(function(error,status){
-          console.log(error,status);
-        });
-      }
-      else {
-        $state.go('home');
-      }
-    })
+    if(!token) {
+      $state.go('signin');
+    }
+    else {
+      Auth.checkToken(token).then(function(status) {
+        if(status === 200) {
+          $http.get('/card/get')
+          .success(function (res) {
+            for(var i = 0; i < res.data.length; i++) {
+              cards.data.push(res.data[i]);
+            }
+          })
+          .error(function(error,status){
+            console.log(error,status);
+          });
+        }
+        else {
+          $state.go('signin');
+        }
+      });
+    }
   };
 
   var addCard = function() {
