@@ -85,7 +85,8 @@ p{
 }
 
 a{
-
+  text-decoration: none;
+  color: #2980B9;
 }
 
 /**** UI Elements ***/
@@ -97,6 +98,7 @@ input[type="submit"], button{
   border-radius: 2px;
   outline: none;
   cursor: pointer;
+  margin: 0 0 8px 0;
   text-shadow: 1px 1px 0px rgba(150, 150, 150, 0.7);
   -webkit-box-shadow: 1px 1px 1px 0px rgba(50, 50, 50, 0.75);
   -moz-box-shadow:    1px 1px 1px 0px rgba(50, 50, 50, 0.75);
