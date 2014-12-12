@@ -47,7 +47,7 @@ angular.module('pledgr.creditcard', [])
             .then(function (res) {
                   console.log(res.data);
                 if(res.data === "SUCCESS") {
-                  $scope.cards.push({endingDigits: 'Card ending in ' + $scope.formData.number.slice(-4), exp: $scope.formData.expmonth 
+                  $scope.cards.push({endingDigits: $scope.formData.number.slice(-4), exp: $scope.formData.expmonth 
                     + '/' + $scope.formData.expyear});
                 }
             });
@@ -66,9 +66,10 @@ angular.module('pledgr.creditcard', [])
       headers: {'Content-Type': 'application/json'}
     })
     .then(function (res) {
+      console.log(res);
       if(res.data === "SUCCESS") {
         for(var i = 0; i < $scope.cards.length; i++) {
-          if($scope.cards[i].number === card.number) {
+          if($scope.cards[i].endingDigits === card.endingDigits) {
             $scope.cards.splice(i, 1);
           }
         }

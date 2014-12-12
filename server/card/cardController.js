@@ -12,8 +12,7 @@ module.exports = {
     });
   },
   delete: function(req, res) {
-    console.log(req);
-    Card.find({username: req.user, endingDigits: req.endingDigits}).remove(function(err) {
+    Card.find({user: req.body.user, endingDigits: req.body.endingDigits}).remove(function(err) {
       if (err) {
         res.send('ERROR');
       }

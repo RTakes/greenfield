@@ -1,5 +1,5 @@
-<div class='cCards' >
-	<h2> Manage Credit Cards </h2>
+<div class='cCards' > <br/>
+	<h2> Manage Cards </h2>
 	<form id="payment-form" ng-submit='addCard()' novalidate>
 	  <div class="form-row">
 	    <label>
@@ -31,9 +31,8 @@
 	<h2> Your Cards </h2>
 	<span ng-show="cards.length === 0"> <br/> You currently have no cards. </span>
 	<ul ng-repeat="acard in cards track by $index"> 
-		<br/>
 		<li class='card'> 
-			{{acard.endingDigits}} ------------ {{acard.exp}} 
+			Card ending in {{acard.endingDigits}} ------------ {{acard.exp}} 
 			<button class="exitCard" ng-click="deleteCard(acard)">Delete Card</button>
 		</li>
 	</ul>
