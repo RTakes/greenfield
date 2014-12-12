@@ -1,0 +1,28 @@
+<div id="charities-container" class="view-container">
+  <div>
+    <h1><span class="small">Make a Donation to:</span> <br>{{charity.name}}</h1>
+  </div>
+
+  <div class="donation-content">
+
+    <div class="donation-text">
+      <p>The DIA has been a beacon of culture for the Detroit area for well over a century. Founded in 1885, the museum was originally located on Jefferson Avenue, but, due to its rapidly expanding collection, moved to a larger site on Woodward Avenue in 1927. The new Beaux-Arts building, designed by Paul Cret, was immediately referred to as the "temple of art." Two wings were added in the 1960s and 1970s, and a major renovation and expansion that began in 1999 was completed in 2007.</p>
+
+      <p>To make a donation please signin or register with pledgr.</p>
+      <button ui-sref="signin">Signin</button><button ui-sref="register">Register</button>
+
+      <p>You may also donate as a guest</p>
+      <button>Donate as guest</button>
+    </div>
+
+    <div class="charity-info">
+      <ul class="about-charity">
+        <li>Categories: <span class="info-item">{{charity.category}}</span></li>
+        <li>Sub Category: <span class="info-item">{{charity.subCategory}}</span></li>
+        <li>Location: <span class="info-item">{{charity.city}}, {{charity.state}}</span></li>
+        <li>Rating: <span class="info-item">{{charity.rating}}</span></li>
+        <li ng-repeat="(key, val) in charity.metrics">{{key}}<span class="info-item">{{val}}</span></li>
+      </ul>  
+    </div>
+  </div>
+</div>

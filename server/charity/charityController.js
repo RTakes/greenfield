@@ -67,7 +67,7 @@ module.exports = {
     var orgid = parseInt(urlParts[2], 10);
     console.log(orgid);
 
-    var aTag = '<a target="_blank" href="http://localhost:8000/api/charity/'+orgid+'"><img src="http://localhost:8000/img/pledgr-badge.png" /></a>';
+    var aTag = '<a target="_blank" href="/#/donate/'+orgid+'"><img src="/img/pledgr-badge.png" /></a>';
 
 
     res.send(aTag);

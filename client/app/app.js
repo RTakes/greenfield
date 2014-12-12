@@ -8,6 +8,7 @@ angular.module('pledgr', [
   'pledgr.creditcard',
   'pledgr.account',
   'pledgr.charityDash',
+  'pledgr.donate',
   'ui.router'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
@@ -58,6 +59,10 @@ angular.module('pledgr', [
     .state('confirmation', {
       url: '/confirmation',
       templateUrl: 'app/confirmation/confirmation.html',
+    }).state('donate', {
+      url: '/donate/:id',
+      templateUrl: 'app/donate/donate.html',
+      controller: 'DonateController'
     });
 
     // $httpProvider.interceptors.push('AttachTokens');
