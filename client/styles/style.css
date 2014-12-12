@@ -57,6 +57,8 @@ body{
   overflow-y: hidden;
   font-family: 'Source Sans Pro', sans-serif;
   background: #ECF0F1;
+  margin: -68px 0 0 0;
+  padding: 68px 0 0 0; /*height of header*/
   /*font-family: 'Slabo 27px', serif;*/
 }
 
@@ -66,6 +68,10 @@ h1{
   line-height: 1.25em;
 }
 
+  h1 .small{
+    font-size: .75em;
+  }
+
 h2 {
   font-size: 1.75em;
   font-weight: 100;
@@ -73,6 +79,14 @@ h2 {
   letter-spacing: .075em;
 }
 
+p{
+  line-height: 1.25em;
+  margin: 1em 0;
+}
+
+a{
+
+}
 
 /**** UI Elements ***/
 input[type="submit"], button{
@@ -279,6 +293,65 @@ header.main-header{
       border-radius: 6px;
     }
 
+/* Donation Page*/
+.donate{
+
+}
+
+  .donate h1{
+    line-height: 1em;
+  }
+
+  .donation-content{
+    margin: 35px 0;
+  }
+
+    .donation-content button{
+      margin: 0 15px 0 0;
+    }
+    
+    .donation-text{
+      width: 575px;
+      float: left;
+    }
+
+    .charity-info{
+    width: 325px;
+    float: right;
+  }
+
+  ul.about-charity{
+    width:  100%;
+    border: 1px solid #2C3E50;
+  }
+
+    ul.about-charity li{
+      display: block;
+      text-align: left;
+      padding: 8px;
+      color: #2C3E50;
+      background-color: #B9D9E8;
+      border-bottom: 1px solid #2C3E50;
+    }
+      ul.about-charity li:nth-child(even){
+        background-color: #A3BECC;
+      }
+
+      ul.about-charity li:last-child{
+        border: none;
+      }
+
+      ul.about-charity li .info-item{
+        text-align: right;
+        float: right;
+        font-weight: 600;
+      }
+
+      ul.about-charity li:hover{
+        color: #fff;
+        background-color: #2C3E50;
+        text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+      }
 
 /*Charity vetting page*/
 
@@ -316,11 +389,6 @@ header.main-header{
   display:inline;
   float:left;
 }
-
-
-
-
-
 
 
 .cta {
