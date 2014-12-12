@@ -7,6 +7,7 @@ angular.module('pledgr', [
   'pledgr.register',
   'pledgr.creditcard',
   'pledgr.account',
+  'pledgr.charityDash',
   'ui.router'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
@@ -39,6 +40,11 @@ angular.module('pledgr', [
        templateUrl: 'app/charities/charities.html',
        controller: 'CharitiesController'
     })
+    .state('charityDash', {
+       url: '/charityDash',
+       templateUrl: 'app/charityDash/charityDash.html',
+       controller: 'CharityDashController'
+    })
     .state('creditcard', {
        url: '/manageCards',
        templateUrl: 'app/creditcard/creditcard.html',
@@ -48,6 +54,10 @@ angular.module('pledgr', [
        url: '/account',
        templateUrl: 'app/account/account.html',
        controller: 'AccountController'
+    })
+    .state('confirmation', {
+      url: '/confirmation',
+      templateUrl: 'app/confirmation/confirmation.html',
     });
 
     // $httpProvider.interceptors.push('AttachTokens');

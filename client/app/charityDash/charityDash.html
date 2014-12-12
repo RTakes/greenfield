@@ -1,0 +1,14 @@
+<div id="signup-page" class="view-container">
+  <div>
+    <h2>Unvetted Charities</h2>
+  </div>
+  <ul>
+    <li class="unvetted" ng-repeat="charity in charities">
+      <h3 class="unvet-name">{{ charity.name }}</h3>
+      <button class="unvet-button" ng-click="vet(charity)">Vet</button>
+      <span class="unvet-phone"><a href="tel:{{ charity.phoneNum }}">{{ charity.phone }}</a></span>
+      <span class="unvet-email"><a href="mailto:{{ charity.email }}">{{ charity.email }}</a></span>
+    </li>
+  <ul>
+
+</div>

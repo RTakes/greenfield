@@ -23,7 +23,11 @@ var CharitySchema = new mongoose.Schema({
     'Working Capital Ratio': String
   },
   category: String,
-  subCategory: String
+  subCategory: String,
+  vetted: {
+    type: Boolean, 
+    default: false
+  }
 });
 
 module.exports = mongoose.model('Charity', CharitySchema);
