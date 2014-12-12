@@ -9,7 +9,6 @@ angular.module('pledgr.signin', [])
   };
 
   if(!!token) {
-    console.log('tru');    
     Auth.checkToken(token)
       .then(function(status){
         if(status === 200) {
