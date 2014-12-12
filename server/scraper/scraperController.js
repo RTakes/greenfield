@@ -9,6 +9,8 @@ var scrapeOrgid = function(orgid) {
       var $ = cheerio.load(html);
       var json = { orgid: orgid };
 
+      json.vetted = true; //charities scraped from charitynavigator should be assumed to be vetted.
+
       json.name = $('.charityname').html();
 
       var address = $('.rating p:nth-child(1)').html();

@@ -7,6 +7,7 @@ angular.module('pledgr', [
   'pledgr.register',
   'pledgr.creditcard',
   'pledgr.account',
+  'pledgr.charityDash',
   'ui.router'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
@@ -38,6 +39,11 @@ angular.module('pledgr', [
        url: '/charities/{c1:[0-9]+}/{c2:[0-9]+}/{c3:[0-9]+}',
        templateUrl: 'app/charities/charities.html',
        controller: 'CharitiesController'
+    })
+    .state('charityDash', {
+       url: '/charityDash',
+       templateUrl: 'app/charityDash/charityDash.html',
+       controller: 'CharityDashController'
     })
     .state('creditcard', {
        url: '/manageCards',

@@ -280,6 +280,30 @@ header.main-header{
     }
 
 
+/*Charity vetting page*/
+
+.unvetted {
+  border: 1px solid #c4c6c6;
+  margin: 0 0 20px 0;
+  padding: 15px;
+  border-radius: 4px;
+  height:35px;
+}
+
+.unvet-name {
+  margin: 10px;
+  font-size:1.2em;
+  display:inline;
+}
+
+.unvet-phone, .unvet-email {
+  float:right;
+  margin: 10px 10px;
+}
+
+.unvet-button {
+  float:right;
+}
 
 
 

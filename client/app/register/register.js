@@ -73,9 +73,8 @@ angular.module('pledgr.register', [])
     phone: '(123)456-7890',
     category: '',
     subCategory: '',
+    vetted: false
   };
-
-
 
   $scope.register = function() {
     // console.log($scope.charity);
