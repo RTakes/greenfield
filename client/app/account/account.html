@@ -35,26 +35,33 @@
       <fieldset class="gender form-section">
         <!-- gender input form -->
         <label for="gender">Gender</label>
-        <input type="checkbox" name="gender" ng-model="user.male">Male<br>
-        <input type="checkbox" name="gender" ng-model="user.female">Female<br>
+        <input type="radio" name="gender" id="male" ng-model="user.male">
+        <label for="male"><span></span>Male</label>
+        <input type="radio" name="gender" id="female" ng-model="user.female">
+        <label for="female"><span></span>Female</label>
       </fieldset>
       <fieldset class="preference form-section">
         <!-- user preferences input form -->
         <h3>Select your charity preferences </h3>
         <label for="preference">Categories</label>
-        <input type="checkbox" name="preference" ng-model="user.animals">Animals<br>
-        <input type="checkbox" name="preference" ng-model="user.arts">Arts, Culture, Humanities<br>
-        <input type="checkbox" name="preference" ng-model="user.education">Education<br>
-        <input type="checkbox" name="preference" ng-model="user.environment">Environment<br>
-        <input type="checkbox" name="preference" ng-model="user.health">Health<br>
-        <input type="checkbox" name="preference" ng-model="user.humanService">Human Services<br>
-        <input type="checkbox" name="preference" ng-model="user.international">International<br>
-        <input type="checkbox" name="preference" ng-model="user.publicBenefit">Public Benefit<br>
-        <input type="checkbox" name="preference" ng-model="user.religion">Religion<br>
-      </fieldset>
-      <fieldset class="form-section">
-
-        <!-- local area preference -->
+        <input id="user-animal" type="checkbox" name="preference" ng-model="user.animals">
+        <label for="user-animal"><span></span>Animals</label>
+        <input id="user-arts" type="checkbox" name="preference" ng-model="user.arts">
+        <label for="user-arts"><span></span>Arts, Culture, Humanities</label>
+        <input id="user-education" type="checkbox" name="preference" ng-model="user.education">
+        <label for="user-education"><span></span>Education</label>
+        <input id="user-enviornment" type="checkbox" name="preference" ng-model="user.environment">
+        <label for="user-enviornment"><span></span>Environment</label>
+        <input id="user-health" type="checkbox" name="preference" ng-model="user.health">
+        <label for="user-health"><span></span>Health</label>
+        <input id="user-humanservice" type="checkbox" name="preference" ng-model="user.humanService">
+        <label for="user-humanservice"><span></span>Human Services</label>
+        <input id="user-international" type="checkbox" name="preference" ng-model="user.international">
+        <label for="user-international"><span></span>International</label>
+        <input id="user-publicbenefit" type="checkbox" name="preference" ng-model="user.publicBenefit">
+        <label for="user-publicbenefit"><span></span>Public Benefit</label>
+        <input id="user-religion" type="checkbox" name="preference" ng-model="user.religion">
+        <label for="user-religion"><span></span>Religion</label>
       </fieldset>
       <fieldset class="phoneContainer form-section">
         <!-- phone number input form -->
