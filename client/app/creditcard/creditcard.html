@@ -1,4 +1,5 @@
-<div >
+<div class='cCards' > <br/>
+	<h2> Manage Cards </h2>
 	<form id="payment-form" ng-submit='addCard()' novalidate>
 	  <div class="form-row">
 	    <label>
@@ -18,15 +19,21 @@
 	    <label>
 	      <span>Expiration (MM/YYYY):</span>
 	      <input type="text" size="2" data-stripe="exp-month" ng-model="formData.expmonth"/>
-	    </label>
 	    <span> / </span>
 	    <input type="text" size="4" data-stripe="exp-year" ng-model="formData.expyear"/>
+	    </label>
 	  </div>
 
 	  <button type="submit">Add Card</button>
 
-	</form> <br/>
-	<ul ng-repeat="card in cards"> 
-		<li> {{card.number}} - - - - - - - - {{card.exp}} </li>
+	</form> <br/> <br/>
+
+	<h2> Your Cards </h2>
+	<span ng-show="cards.data.length === 0"> <br/> You currently have no cards. </span>
+	<ul ng-repeat="acard in cards.data track by $index"> 
+		<li class='card'> 
+			Card ending in {{acard.endingDigits}} ------------ {{acard.exp}} 
+			<button class="exitCard" ng-click="deleteCard(acard)">Delete Card</button>
+		</li>
 	</ul>
 </div>
