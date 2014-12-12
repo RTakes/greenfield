@@ -238,7 +238,6 @@ header.main-header{
 .home {
   height:100%;
   width: 100%;
-  padding: 0;
   background:  no-repeat center center fixed;
   background-image: url(../img/bg-puppy.jpg); 
   background-position: center 75px;
