@@ -59,6 +59,21 @@ module.exports = {
     Charity.find().distinct('subCategory', function(err, subCategories) {
       res.json(subCategories);
     })
+  },
+
+  badge: function(req, res){
+
+
+  function addBadge(){
+    var frame = document.createElement("iframe"); 
+    frame.src = "http://localhost:8000"; 
+    document.getElementById("test").appendChild(frame);
+  }      
+
+  var send = JSON.stringify(addBadge);
+
+
+    res.send('function test(){alert("test");}');
   }
 
 };

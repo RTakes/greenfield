@@ -76,26 +76,31 @@ angular.module('pledgr.signup', [])
   $scope.form = {
     selected : null,
     fieldsets : null,
-    nextDisabled : false,
-    prevDisabled : true
+    currentFieldset : 0
   }
   
   $scope.form.selected = angular.element(document.querySelector('#signup-form'));
   $scope.form.fieldsets = $($scope.form.selected).find('fieldset');
 
   $scope.formNext = function() {
-    var form =  angular.element(document.querySelector('#signup-form fieldset.active'));
+    var form = $($scope.form.selected).find('fieldset.active');
+    if($(form).next('fieldset').length > 0){
+      $scope.form.currentFieldset ++;
       angular.element(form).fadeOut('fast', function(){
-          console.log($(this).next('fieldset').length);
-          $(this).next('fieldset').fadeIn().addClass('active');
+        $(this).next('fieldset').fadeIn().addClass('active');
       }).removeClass('active');
+    }
+    console.log($scope.form.currentFieldset);
   };
 
   $scope.formPrev = function() {
-    var form =  angular.element(document.querySelector('#signup-form fieldset.active'));
+    var form = $($scope.form.selected).find('fieldset.active');
+    if($(form).prev('fieldset').length > 0){
+      $scope.form.currentFieldset --;
       angular.element(form).fadeOut('fast', function(){
-          $(this).prev('fieldset').fadeIn().addClass('active');
+        $(this).prev('fieldset').fadeIn().addClass('active');
       }).removeClass('active');
+    }
   };
 
 

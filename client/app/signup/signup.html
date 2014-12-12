@@ -1,6 +1,20 @@
 <div id="signup-page" class="view-container">
   <div>
     <h2>Create an account</h2>
+    <script>
+      // var frame = document.createElement('iframe');
+      // frame.src = 'http://localhost:8000';
+
+      
+      // document.getElementById('test').appendChild(frame);
+
+    </script>
+
+    <script src="http://localhost:8000/api/charity/3619?jsonp=alert">//test();</script>
+
+<!--     <div id="test">
+       
+    </div> -->
   </div>
   <div>
     <form id="signup-form" name="signupForm" ng-submit="signup()" novalidate >
@@ -39,8 +53,11 @@
       <fieldset class="gender form-section">
         <!-- gender input form -->
         <label for="gender">Gender</label>
-        <input type="checkbox" name="gender" ng-model="user.male">Male<br>
-        <input type="checkbox" name="gender" ng-model="user.female">Female<br>
+
+        <input type="radio" name="gender" id="male" ng-model="user.male">
+        <label for="male"><span></span>Male</label>
+        <input type="radio" name="gender" id="female" ng-model="user.female">
+        <label for="female"><span></span>Female</label>
       </fieldset>
 
       <fieldset class="preference form-section">
@@ -99,8 +116,8 @@
           <label for="firstName">Name</label>
           <input type="text" name="firstName" ng-model="user.first" ng-minlength="2" ng-maxlength="15" required>
           <!-- firstname validation -->
-          <p ng-show="signupForm.firtname.$error.minlength">Name too short</p>
-          <p ng-show="signupForm.firtname.$error.maxlength">Name too long</p>
+          <p ng-show="signupForm.firstname.$error.minlength">Name too short</p>
+          <p ng-show="signupForm.firstname.$error.maxlength">Name too long</p>
           <!-- lastname input form -->
           <input type="text" name="lastName" ng-model="user.last" ng-minlength="2" ng-maxlength="15" required>
           <!-- lastname validation -->
@@ -110,18 +127,19 @@
         <input type="number" ng-model="user.pledge" name="pledge" required>
         <span class="form-tip">You have donated <span id="currency-default">{{user.pledge | currency }}</span>! </p>
         <span class="form-tip form-error" ng-show="signupForm.pledge.$invalid || signupForm.pledge.$pristine">Please enter amount</span>
+      
+
+
+
+        <p>Click <strong>Create account</strong> to sign up today!</p>
+        <span ng-show='!signupForm.$invalid'>Please fill out all required fields.  Use back</span>
+        <button type="submit" ng-disabled='!signupForm.$invalid'  class="btn btn-primary">Create account</button>
+
       </fieldset>
 
-      <fieldset id="createAccount">
-        <p>Click <strong>Create account</strong> to sign up today!</p>
-
-        <button type="submit" ng-if='!signupForm.$invalid'  class="btn btn-primary">Create account</button>
-
-    </fieldset>
-
       <div class="form-controls">
-        <button type="button" ng-click="formPrev()" ng-disabled="{{form.prevDisabled}}" class="form-prev">Back</button>
-        <button type="button" ng-click="formNext()" ng-disabled="{{form.nextDisabled}}" class="form-next">Next</button>
+        <button type="button" ng-click="formPrev()" ng-disabled="form.prevDisabled" class="form-prev">Back</button>
+        <button type="button" ng-click="formNext()" ng-disabled="form.nextDisabled" class="form-next">Next</button>
 
         <ul class="form-progress">
           <li ng-repeat="f in form.fieldsets"></li>

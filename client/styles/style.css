@@ -124,11 +124,11 @@ input[type="submit"], button{
     padding: 10px 20px;
   }
 
-  input[type="checkbox"]{
+  input[type="checkbox"], input[type="radio"]{
     display: none;
   }
 
-  input[type="checkbox"] + label span {
+  input[type="checkbox"] + label span, input[type="radio"] + label span {
       display:inline-block;
       width:19px;
       height:19px;
@@ -140,6 +140,14 @@ input[type="submit"], button{
 
   input[type="checkbox"]:checked + label span {
       background:url(../img/check_radio_buttons.png) -19px top no-repeat;
+  }
+
+  input[type="radio"] + label span {
+      background:url(../img/check_radio_buttons.png) -38px top no-repeat;
+  }
+
+  input[type="radio"]:checked + label span {
+      background:url(../img/check_radio_buttons.png) -57px top no-repeat;
   }
 
   .form-section{
