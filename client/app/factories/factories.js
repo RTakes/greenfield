@@ -2,7 +2,6 @@ angular.module('pledgr.factories', [])
 
 .factory('CreditCards', function($http, $state,$window, Auth, Account) {
   Stripe.setPublishableKey("pk_test_d4qfvAGCTfij33GxuvYkZKUl");
-  var token = $window.localStorage.getItem('token');
   
   var cards = {data:[]};
   var formData = {
@@ -13,20 +12,24 @@ angular.module('pledgr.factories', [])
   };
   
   var getCards = function() {
+    $('#payment-form').get(0).reset();
+    cards.data = [];
+    
+    var token = $window.localStorage.getItem('token');
     if(!token) {
       $state.go('signin');
     }
     else {
-      Auth.checkToken(token).then(function(status) {
-        if(status === 200) {
-          $http.get('/card/get')
+      Account.getUserData(token).then(function(res) {
+        if(res.data) {
+          $http.get('/card/get', {params: {user: res.data.username}})
           .success(function (res) {
             for(var i = 0; i < res.data.length; i++) {
               cards.data.push(res.data[i]);
             }
           })
-          .error(function(error,status){
-            console.log(error,status);
+          .error(function(error,user){
+            console.log(error,user);
           });
         }
         else {
@@ -38,6 +41,7 @@ angular.module('pledgr.factories', [])
 
   var addCard = function() {
      var $form = $('#payment-form');
+     var authToken = $window.localStorage.getItem('token');
      Stripe.card.createToken($form, 
         function (status, response) {
           if (response.error) {
@@ -45,12 +49,12 @@ angular.module('pledgr.factories', [])
           } else {
             // response contains id and card, which contains additional card details
             var token = response.id;
-            Account.getUserData(token).then(function(data) {
+            Account.getUserData(authToken).then(function(res) {
               $http({
                 url: '/card/add',
                 method: "POST",
                 data: {
-                  user: data.username, 
+                  user: res.data.username, 
                   stripeToken: token,
                   endingDigits: formData.number.slice(-4),
                   exp: (formData.expmonth 
@@ -73,11 +77,12 @@ angular.module('pledgr.factories', [])
   };
 
   var deleteCard = function(card) {
-    Account.getUserData(token).then(function(data) {
+    var authToken = $window.localStorage.getItem('token');
+    Account.getUserData(authToken).then(function(res) {
       $http({
         url: '/card/delete',
         method: "POST",
-        data: {user: data.username, endingDigits: card.endingDigits},
+        data: {user: res.data.username, endingDigits: card.endingDigits},
         headers: {'Content-Type': 'application/json'}
       })
       .then(function (res) {

@@ -4,7 +4,8 @@ var stripe = require('stripe')("sk_test_WjBhk0wLLvaJp3bO65bozL53");
 
 module.exports = {
   getCards: function(req, res) {
-    Card.find({},function(err, cards) {
+console.log(req.query.user);
+    Card.find({user: req.query.user},function(err, cards) {
       if(!err) {
         // console.log(cards);
         res.send({data:cards});
@@ -31,7 +32,7 @@ module.exports = {
   	    stripe.customers.create(
   	    	{
   	      	// card: stripeToken,
-  	      	description: '12345@hackreactor.com'
+  	      	description: ''
   	    	}, 
   	    	function(err, customer) {
   	    		if(err) {
