@@ -8,12 +8,14 @@ angular.module('pledgr.signin', [])
     password: ''
   };
 
-  Auth.checkToken(token)
-    .then(function(status){
-      if(status === 200) {
-        $state.go('account');
-      }
-    });
+  if(!!token) {
+    Auth.checkToken(token)
+      .then(function(status){
+        if(status === 200) {
+          $state.go('account');
+        }
+      });
+  }
 
   $scope.rejected = false;
   $scope.signin = function() {
